@@ -82,5 +82,5 @@ public class ReliefService {
            ", Date of Inquiry: " + dateOfInquiry + 
            ", Info Provided: " + infoProvided + 
            ", Last Known Location: " + lastKnownLocation.getName();
-}
+    }
 }
