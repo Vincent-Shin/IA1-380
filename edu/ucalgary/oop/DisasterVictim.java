@@ -40,7 +40,6 @@ public class DisasterVictim {
         return date.matches(dateFormatPattern);
     }
 
-  
     // Getters and setters
 
     public String getFirstName() {
@@ -74,7 +73,7 @@ public class DisasterVictim {
         return ASSIGNED_SOCIAL_ID;
     }
 
-  public FamilyRelation[] getFamilyConnections() {
+    public FamilyRelation[] getFamilyConnections() {
         return familyConnections.toArray(new FamilyRelation[0]);
     }
 
@@ -184,7 +183,7 @@ public class DisasterVictim {
         this.gender = gender.toLowerCase(); // Store in a consistent format
     }
 
-   
+
 }
 
 
