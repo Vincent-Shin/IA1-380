@@ -1,24 +1,20 @@
 package edu.ucalgary.oop;
 
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.util.Set;
 
 
 public class DisasterVictim {
     private static int counter = 0;
 
     private String firstName;
-    private String lastName;
-    private String dateOfBirth;
     private final int ASSIGNED_SOCIAL_ID;
     private ArrayList<FamilyRelation> familyConnections = new ArrayList<>();
     private ArrayList<MedicalRecord> medicalRecords = new ArrayList<>();
     private Supply[] personalBelongings;
     private final String ENTRY_DATE;
-    private String gender;
-    private String comments;
+    private Set<DietaryRestriction> dietaryRestrictions;
+    
 
     public DisasterVictim(String firstName, String ENTRY_DATE) {
         this.firstName = firstName;
@@ -48,25 +44,6 @@ public class DisasterVictim {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        if (!isValidDateFormat(dateOfBirth)) {
-            throw new IllegalArgumentException("Invalid date format for date of birth. Expected format: YYYY-MM-DD");
-        }
-        this.dateOfBirth = dateOfBirth;
     }
 
     public int getAssignedSocialID() {
@@ -164,26 +141,14 @@ public class DisasterVictim {
         return ENTRY_DATE;
     }
 
-    public String getComments() {
-        return comments;
+    public void addDietaryRestriction(DietaryRestriction restriction) {
+        dietaryRestrictions.add(restriction);
     }
 
-    public void setComments(String comments) {
-        this.comments =  comments;
+    // Method to remove a dietary restriction
+    public void removeDietaryRestriction(DietaryRestriction restriction) {
+        dietaryRestrictions.remove(restriction);
     }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        if (!gender.matches("(?i)^(male|female|other)$")) {
-            throw new IllegalArgumentException("Invalid gender. Acceptable values are male, female, or other.");
-        }
-        this.gender = gender.toLowerCase(); // Store in a consistent format
-    }
-
-
 }
 
 
