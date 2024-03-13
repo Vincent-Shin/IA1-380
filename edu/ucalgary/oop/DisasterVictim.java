@@ -140,7 +140,10 @@ public class DisasterVictim {
     public String getEntryDate() {
         return ENTRY_DATE;
     }
-
+    public Set<DietaryRestriction> getDietaryRestrictions() {
+        return dietaryRestrictions;
+    }
+    
     public void addDietaryRestriction(DietaryRestriction restriction) {
         dietaryRestrictions.add(restriction);
     }
@@ -149,6 +152,8 @@ public class DisasterVictim {
     public void removeDietaryRestriction(DietaryRestriction restriction) {
         dietaryRestrictions.remove(restriction);
     }
+    
+
 }
 
 
