@@ -33,7 +33,7 @@ public class FamilyRelationTest {
 
         // Adding relationship to Peace's family connections
         peace.addFamilyConnection(peaceSamRelation);
-
+        sam.addFamilyConnection(peaceSamRelation);
         // Now both Peace and Sam should have the same family connection
         assertEquals("Peace should have 1 family connection", 1, peace.getFamilyConnections().length);
         assertEquals("Sam should have 1 family connection", 1, sam.getFamilyConnections().length);
@@ -50,7 +50,7 @@ public class FamilyRelationTest {
 
         // Removing relationship from Peace's family connections
         peace.removeFamilyConnection(peaceSamRelation);
-
+        sam.removeFamilyConnection(peaceSamRelation);
         // Now both Peace and Sam should have 0 family connections
         assertEquals("Peace should have 0 family connections", 0, peace.getFamilyConnections().length);
         assertEquals("Sam should have 0 family connections", 0, sam.getFamilyConnections().length);
@@ -58,28 +58,35 @@ public class FamilyRelationTest {
 
     @Test
     public void testDuplicateFamilyRelationPrevention() {
-        peace.addFamilyConnection(peaceSamRelation);
-        // Trying to add the same relation again should not change anything
-        peace.addFamilyConnection(peaceSamRelation);
+    // Creating two identical FamilyRelation objects
+    FamilyRelation peaceSamRelation1 = new FamilyRelation(peace, "sibling", sam);
+    FamilyRelation peaceSamRelation2 = new FamilyRelation(peace, "sibling", sam);
 
-        assertEquals("Peace should have only 1 family connection", 1, peace.getFamilyConnections().length);
+    // Adding the same relation twice to peace
+    peace.addFamilyConnection(peaceSamRelation1);
+    peace.addFamilyConnection(peaceSamRelation2);
+
+    // Peace should have only 1 family connection
+    assertEquals("Peace should have only 1 family connection", 1, peace.getFamilyConnections().length);
     }
 
     @Test
     public void testCompleteFamilyRelationStorage() {
-        // Creating family relations between Peace, Sam, and Diamond
-        FamilyRelation peaceSamRelation = new FamilyRelation(peace, "sibling", sam);
-        FamilyRelation peaceDiamondRelation = new FamilyRelation(peace, "sibling", diamond);
-        FamilyRelation samDiamondRelation = new FamilyRelation(sam, "sibling", diamond);
+    // Creating family relations between Peace, Sam, and Diamond
+    FamilyRelation peaceSamRelation = new FamilyRelation(peace, "sibling", sam);
+    FamilyRelation peaceDiamondRelation = new FamilyRelation(peace, "sibling", diamond);
+    FamilyRelation samDiamondRelation = new FamilyRelation(sam, "sibling", diamond);
 
-        // Adding relations
-        peace.addFamilyConnection(peaceSamRelation);
-        peace.addFamilyConnection(peaceDiamondRelation);
-        sam.addFamilyConnection(samDiamondRelation);
+    // Adding relations
+    peace.addFamilyConnection(peaceSamRelation);
+    peace.addFamilyConnection(peaceDiamondRelation);
+    sam.addFamilyConnection(samDiamondRelation);
+    sam.addFamilyConnection(peaceSamRelation);
+    // Checking family connections    assertEquals("Diamond should have 2 family connections", 2, diamond.getFamilyConnections().length);
 
-        assertEquals("Peace should have 2 family connections", 2, peace.getFamilyConnections().length);
-        assertEquals("Sam should have 2 family connections", 2, sam.getFamilyConnections().length);
-        assertEquals("Diamond should have 2 family connections", 2, diamond.getFamilyConnections().length);
+    assertEquals("Peace should have 2 family connections", 2, peace.getFamilyConnections().length);
+    assertEquals("Sam should have 2 family connections", 2, sam.getFamilyConnections().length);
     }
+
 }
 

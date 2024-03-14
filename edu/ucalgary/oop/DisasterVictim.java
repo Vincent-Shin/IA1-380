@@ -25,7 +25,8 @@ public class DisasterVictim {
         this.ENTRY_DATE = ENTRY_DATE;
         this.ASSIGNED_SOCIAL_ID = generateSocialID();
         this.dietaryRestrictions = new HashSet<>();
-        
+        this.medicalRecords = new ArrayList<>();
+
     }
 
     private static int generateSocialID() {
@@ -129,7 +130,9 @@ public class DisasterVictim {
     }
 
     public void addFamilyConnection(FamilyRelation record) {
-        familyConnections.add(record);
+        if (!familyConnections.contains(record)) {
+            familyConnections.add(record);
+        }
     }
 
 

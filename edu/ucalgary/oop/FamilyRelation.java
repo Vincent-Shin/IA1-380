@@ -38,4 +38,17 @@ public class FamilyRelation {
     public void setPersonTwo(DisasterVictim personTwo) {
         this.personTwo = personTwo;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        FamilyRelation other = (FamilyRelation) obj;
+        return personOne.equals(other.personOne) &&
+            relationshipTo.equals(other.relationshipTo) &&
+            personTwo.equals(other.personTwo);
+    }
 }
