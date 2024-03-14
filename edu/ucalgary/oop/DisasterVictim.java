@@ -1,6 +1,7 @@
 package edu.ucalgary.oop;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -23,6 +24,7 @@ public class DisasterVictim {
         }
         this.ENTRY_DATE = ENTRY_DATE;
         this.ASSIGNED_SOCIAL_ID = generateSocialID();
+        this.dietaryRestrictions = new HashSet<>();
         
     }
 
@@ -111,15 +113,14 @@ public class DisasterVictim {
 
     // Remove a Supply from personalBelongings, we assume it only appears once
     public void removePersonalBelonging(Supply unwantedSupply) {
-        Supply[] updatedBelongings = new Supply[personalBelongings.length-1];
-        int index = 0;
-        int newIndex = index;
-        for (Supply supply : personalBelongings) {
-            if (!supply.equals(unwantedSupply)) {
-                updatedBelongings[newIndex] = supply;
-                newIndex++;
+        if (personalBelongings != null) {
+            ArrayList<Supply> updatedBelongingsList = new ArrayList<>(personalBelongings.length);
+            for (Supply supply : personalBelongings) {
+                if (!supply.equals(unwantedSupply)) {
+                    updatedBelongingsList.add(supply);
+                }
             }
-            index++;
+            personalBelongings = updatedBelongingsList.toArray(new Supply[0]);
         }
     }
 

@@ -19,9 +19,9 @@ public class GenderRetrievalTest {
 
     @Test
     public void testReadFromFile() throws IOException {
-        String fileName = "GenderOptions.txt";
-        genderRetrieval.readFromFile(fileName);
-        ArrayList<String> expectedOptions = new ArrayList<>(Arrays.asList("boy", "gender queer", "girl", "man", "non-binary", "two-spirit", "woman"));
-        assertEquals("Gender options should be loaded from file", expectedOptions, genderRetrieval.genderRetrieval());
+    String fileName = getClass().getResource("/edu/ucalgary/oop/GenderOptions.txt").getPath();
+    genderRetrieval.readFromFile(fileName);
+    ArrayList<String> expectedOptions = new ArrayList<>(Arrays.asList("boy", "gender queer", "girl", "man", "non-binary", "two-spirit", "woman"));
+    assertEquals("Gender options should be loaded from file", expectedOptions, genderRetrieval.genderRetrieval());
     }
 }
